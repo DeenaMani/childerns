@@ -1,0 +1,58 @@
+<!-- <script>
+    $(document).ready(function(){
+        // Function to load resources
+        function loadResources() {
+            $.ajax({
+                url: '{{ route("resource.get") }}',
+                method: 'GET',
+                success: function(response) {
+                    var tableBody = $('#datatables tbody');
+                    tableBody.empty();
+
+                    $.each(response, function(index, resource) {
+                        var newRow = '<tr>' +
+                            '<td>' + resource.title + '</td>' +
+                            '<td>' + (resource.video_link ? '<a href="' + resource.video_link + '">Watch Video</a>' : '') + '</td>' +
+                            '<td>' + (resource.pdf ? '<a href="' + resource.pdf + '">Download PDF</a>' : '') + '</td>' +
+                            '<td>' +
+                                '<form action="/admin/topic/' + resource.id + '" method="POST">' +
+                                    '@csrf' +
+                                    '@method("DELETE")' +
+                                    '<button type="submit" class="mx-1 btn btn-danger" onclick="return confirm(\'Are you sure to delete ?\')"><i class="fa fa-trash"></i></button>' +
+                                '</form>' +
+                            '</td>' +
+                            '</tr>';
+                        tableBody.append(newRow);
+                    });
+                }
+            });
+        }
+
+        // Load resources on page load
+        loadResources();
+
+        // Handle form submission
+        $('form#resource-form').submit(function(e){
+            e.preventDefault();
+
+            var formData = new FormData($(this)[0]);
+
+            $.ajax({
+                url: '{{ route("resource.store") }}',
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    alert(response.message);
+                    // Load resources after adding
+                    loadResources();
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+</script> -->
