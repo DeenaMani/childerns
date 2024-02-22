@@ -38,7 +38,6 @@
                                 <tr>
                                     <th> Id </th>
                                     <th> Title </th>
-                                  
                                     <th> Action </th>
                                 </tr>
                             </thead>
@@ -46,9 +45,8 @@
                             <tbody>
                                 @foreach ($result as $key => $data)
                                 <tr>
-                                    <td> {{$data->id}} </td>
-                                    <td> {{$data->title}} </td>
-                                    
+                                    <td> {{ $loop->index + 1 }} </td>
+                                    <td> {{$data->title}} </td>                                   
                                     <td class="row justify-content-center"> 
                                         <a href="{{ url('admin/about/'.$data->id.'/edit') }}" class=" btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <!--  <form action="{{ url('admin/about/'.$data->id) }}" method="POST">

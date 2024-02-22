@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BookingData;
+use App\Models\Course;
+use App\Models\Student;
+use App\Models\Instructor;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,7 +16,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view ('admin.dashboard');
+        $purchase = BookingData::where('booking_status',1)->count();
+        $total_amount = BookingData::where('booking_status',1)->sum('total_price');
+        $student  = student::count();
+        $teacher  = Instructor::where('instructor_type',1)->count();
+        $mentor  = Instructor::where('instructor_type',2)->count();
+        return view ('admin.dashboard',compact('purchase','student','teacher','mentor','total_amount'));
     }
 
     /**

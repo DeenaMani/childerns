@@ -43,7 +43,7 @@
                             <tbody>
                                 @foreach ($result as $key => $data)
                                 <tr>
-                                    <td> {{$data->id}} </td>
+                                    <td> {{ $loop->index + 1 }} </td>
                                     <td> {{$data->faq_title}} </td>
                                     <td> <div class="form-check form-switch">
                                             <input data-id="{{$data->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" 

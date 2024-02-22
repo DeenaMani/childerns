@@ -211,7 +211,7 @@ class TopicController extends Controller
     }
 
     public function delete($id)
-        {
+    {
             $resource = Resource::find($id);
             if (!$resource) {
                 return  back()->with('error',"Resource Error delete");
@@ -220,6 +220,39 @@ class TopicController extends Controller
             $resource->delete();
 
             return  back()->with('error', 'Resource deleted successfully');
-        }
+    }
+
+    public function resource_edit($id) {
+
+        $data = Resource::find($id);   
+        return response()->json($data);
+
+    }
+
+    public function resource_update(Request $request, $id) {
+
+        $request->validate([
+            'title'      => 'required',
+            'video_link' => 'nullable|url',
+            'pdf'        => 'nullable|file|mimes:pdf',
+        ]);
+
+        $data = $request->all();
+
+        if ($request->hasfile('pdf'))
+        {  //check file present or not
+            $images = $request->file('pdf'); //get the file
+            $image = time().'.'.$images->getClientOriginalExtension();
+            $destinationPath = public_path('/pdf/topic'); //public path folder dir
+            $images->move($destinationPath, $image);  //move to destination you mentioned 
+            $data['pdf']=$image;
+        } 
+
+        $resource = new Resource;
+        $resource -> update($data);
+
+        return  back()->with('success', 'Resource Updated successfully');
+
+    }
 
 }

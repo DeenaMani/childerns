@@ -21,7 +21,7 @@
             </thead>
             <tbody>
             @if(count($cart))
-            @php $total= 0 @endphp
+            @php $total= 0;  @endphp
             @foreach($cart as $row)
 
             @php
@@ -43,15 +43,23 @@
                 <td>{{get_price($category->price)}} </td>
                 <td><a href="{{url('cart-delete/'.base64_encode($row->id))}}"><i class="fa fa-trash"></i></a></td>
               </tr>
-              @php } else{
-                    $courses = App\Models\Course::where('id',$row->product_id)->where('status',1)->get();
+              @php }  else{
+                    $course= App\Models\Course::where('id',$row->product_id)->where('status',1)->first();
+                     $total += $course->price
                 @endphp
                  <tr>
-                <td><img src="{{assets()}}/images/cources/course1.jpg" alt="course1"></td>
-                <td><a href="">{{$row->price}}</a></td>
-                <td>{{get_price($row->price)}} </td>
-                <td><a href="{{url('cart-delete/'.base64_encode($row->id))}}"><i class="fa fa-trash"></i></a></td>
-              </tr>
+                <td><img src="{{assets()}}image/course/{{$course->course_image}}" alt="{{$course->coursename}}"></td>
+                <td>
+                    <a href="{{url('course/'.$course->slug)}}">{{$course->course_name}}</a><br>
+                    <div class="row d-sm-none d-block mt-2">
+                        <span>{{get_price($course->price)}}</span>
+                        <span class="pull-right"><a href="{{url('cart-delete/'.base64_encode($row->id))}}"><i class="fa fa-trash"></i></a></span>
+                    </div>
+                </td>
+                
+                    <td>{{get_price($course->price)}} </td>
+                    <td><a href="{{url('cart-delete/'.base64_encode($row->id))}}"><i class="fa fa-trash"></i></a></td>
+                  </tr>
               @php } @endphp
             @endforeach
               @else

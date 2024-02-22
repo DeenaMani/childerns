@@ -24,85 +24,72 @@
                     </div>
                     <div class="card-body text-dark">
                          @include('layouts.partials.messages')
-                        <form action="{{ url('admin/instructor') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('admin/student') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <label for="student_image"> Students Image </label>
-                                    <input type="file" class="form-control mb-3" name="student_image" >
-                                </div>  
 
                                 <div class="col-lg-6">
-                                    <label for="student_name"> Students Name </label>
-                                    <input type="text" class="form-control mb-3" name="student_name" required>
+                                    <label for="first_name"> First Name </label>
+                                    <input type="text" class="form-control mb-3" name="first_name">
                                 </div>
 
                                 <div class="col-lg-6">
-                                    <label for="email"> email Number </label>
-                                    <input type="text" class="form-control mb-3" name="email" required>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <label for="password"> Password </label>
-                                    <input type="text" class="form-control mb-3" name="password" required>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <label for="c_password"> Confirm Password </label>
-                                    <input type="text" class="form-control mb-3" name="c_password" required>
+                                    <label for="last_name"> Last Name </label>
+                                    <input type="text" class="form-control mb-3" name="last_name">
                                 </div>
 
                                 <div class="col-lg-6">
                                     <label for="phone"> Phone Number </label>
-                                    <input type="text" class="form-control mb-3" name="phone" required>
+                                    <input type="text" class="form-control mb-3" name="phone">
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <label for="email"> E Mail </label>
-                                            <input type="text" class="form-control mb-3" name="email" required>
+                                            <input type="text" class="form-control mb-3" name="email">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 mb-3">
-                                    <label for="address_lane1"> Address Lane 1 </label>
-                                    <input class="form-control" type="text" name="address_lane1" value="">
+                                <div class="col-lg-6">
+                                    <label for="password"> Password </label>
+                                    <input type="text" class="form-control mb-3" name="password">
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <label for="confirm_password"> Confirm Password </label>
+                                    <input type="text" class="form-control mb-3" name="confirm_password">
                                 </div>
 
                                 <div class="col-lg-6 mb-3">
-                                    <label for="address_lane2"> Address Lane 2 </label>
-                                    <input class="form-control" type="text" name="address_lane2" value="">
+                                    <label for="address"> Address </label>
+                                    <input class="form-control" type="text" name="address" value="">
                                 </div>
+
 
                                 <div class="col-lg-6 mb-3">
                                     <label for="state"> State </label>
                                     <select id="state" name="state" class="form-select form-control" value="">
                                         <option value="" disabled="" selected="">Select State</option>
-                                        <option value="">Tamil Nadu</option>
-                                        <option value="">Karnataka</option>
-                                        <option value="">Kerala</option>
+                                        @foreach ($states as $state)
+                                        <option value="{{$state->id}}">{{$state->state_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
                                 <div class="col-lg-6 mb-3">
                                     <label for="city"> City </label>
-                                    <select id="state" name="state" class="form-select form-control" value="">
-                                        <option value="" disabled="" selected="">Select State</option>
-                                        <option value="">Tamil Nadu</option>
-                                        <option value="">Karnataka</option>
-                                        <option value="">Kerala</option>
-                                    </select>
+                                    <input id="city" name="city" class="form-select form-control" value="">
                                 </div>
 
-                                <div class="col-lg-12 mb-3">
-                                    <label for="post_code"> Post Code </label>
-                                    <input class="form-control" type="text" name="post_code" value="">
+                                <div class="col-lg-6 mb-3">
+                                    <label for="pincode"> Post Code </label>
+                                    <input class="form-control" type="text" name="pincode" value="">
                                 </div>
 
                                 <div class="col-lg-12 p-3 ">
-                                    <input type="submit" class="btn btn-primary text-white" style="float:right;" value="Save instructor">
+                                    <input type="submit" class="btn btn-primary text-white" style="float:right;" value="Save Student">
                                 </div>
                             </div>                                   
                         </form>

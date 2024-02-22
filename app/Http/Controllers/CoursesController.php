@@ -29,7 +29,10 @@ class CoursesController extends Controller
             return view('frontend.courses.categoryDetails',compact('title','description','courses','category','slug2'));             
         }
         else{
-            
+            $course  = Course::where('status',1)->where('slug',$slug)->first();
+            $title = $course->course_name; 
+            $description = $course->course_name;
+            return view('frontend.courses.courseDetails',compact('title','description','course','slug'));        
         }
         
     }

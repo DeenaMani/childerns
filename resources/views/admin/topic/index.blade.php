@@ -45,7 +45,7 @@
                             <tbody>
                                 @foreach ($results as $key => $data)
                                 <tr>
-                                    <td> {{$data->id}} </td>
+                                    <td> {{ $loop->index + 1 }}  </td>
                                     <td> {{$data->category_name}} - {{$data->course_name}} </td>
                                     <td> {{$data->topic}} </td>
                                     <td> {{$data->type == 1 ? "Video's" :"Study Material's" }} </td>

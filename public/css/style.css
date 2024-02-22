@@ -1542,6 +1542,7 @@ footer #subscribe button[type="submit"] {
 	border-bottom: 1px solid rgb(0, 0, 0, .2);
 	border-radius: unset;
 	padding: 13px 20px;
+	color: #000!important;
 }
 
 .book-your-session form .btn-theme-1 {
@@ -1590,6 +1591,11 @@ footer #subscribe button[type="submit"] {
 	border-bottom: 1px solid rgb(0, 0, 0, .2);
 	border-radius: unset;
 	padding: 13px 20px;
+}
+
+#feedback form .form-control:focus {
+	box-shadow: unset;
+	border-color: #0495FF;
 }
 
 #feedback form .btn-theme-1 {
@@ -1869,6 +1875,10 @@ footer #subscribe button[type="submit"] {
 	overflow: hidden;
 	overflow-x: scroll;
 }
+
+.account .table-content::-webkit-scrollbar {
+	display: none;
+} 
 
 .account aside.sidebar  li.active a span {
 	float: right;

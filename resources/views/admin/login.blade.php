@@ -6,6 +6,20 @@ $setting = App\Models\Setting::find(1);
 
 @extends('layouts.admin')
 
+@push('css')
+<style>
+    .floating-label label {
+      top: -10px!important;
+      background: #fff;
+    }
+
+    .clearfix img {
+      width: 50%!important;
+      object-fit: contain!important;
+    }
+</style>
+@endpush
+
 @section('main-content')
 
   <!-- Begin Page -->

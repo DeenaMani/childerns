@@ -54,7 +54,7 @@
                             <tbody>
                                 @foreach ($results as $key => $data)
                                 <tr>
-                                    <td> {{$data->id}} </td>
+                                    <td> {{ $loop->index + 1 }} </td>
                                     <td> <img src="{{url('public/image/our-values/'.$data->image)}}" width="50px"> </td>
                                     <td> {{$data->title}} </td>
                                     <td class="row justify-content-center"> 

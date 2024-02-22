@@ -40,6 +40,19 @@ $setting = cache('settings');
       display: flex;
       overflow-x: auto;
     }
+
+    input.btn-primary {
+      float: right;
+    }
+    
+    label, th {
+      text-transform: capitalize;
+    }
+
+    img {
+      width: 100px!important;
+      object-fit: cover;
+    }
    </style>
 </head>
 

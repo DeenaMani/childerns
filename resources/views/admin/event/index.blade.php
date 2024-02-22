@@ -47,7 +47,7 @@
                             <tbody>
                                 @foreach ($result as $key => $data)
                                 <tr>
-                                    <td> {{$data->id}} </td>
+                                    <td> {{ $loop->index + 1 }} </td>
                                     <td> {{$data->title}} </td>
                                     <td> {{$data->date}} </td>
                                     <td> <div class="form-check form-switch">

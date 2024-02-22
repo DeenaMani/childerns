@@ -47,24 +47,19 @@
                                     <th> Name </th>
                                     <th> Email </th>
                                     <th> Phone </th>
-                                    <th> Status </th>
+                                    <th> Date </th>
                                     <th> Action </th>
                             </thead>
                             <tbody>
                                  @foreach ($result as $key => $data)
                                 <tr>
-                                    <td> {{$data->id}} </td>
-                                    <td> {{$data->first_name}} &nbsp; {{$data->middle_name}} &nbsp; {{$data->last_name}} </td>
-                                    <td> {{$data->user_email}} </td>
-                                    <td> {{$data->user_phone}} </td>
-                                    <td> 
-                                        <div class="form-check form-switch">
-                                            <input  data-id="{{$data->id}}"   class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" 
-                                            data-on="Active" data-off="InActive" {{ $data->status ? 'checked' : '' }}>
-                                        </div>                                  
-                                     </td>
+                                    <td> {{ $loop->index + 1 }} </td>
+                                    <td> {{$data->first_name}} &nbsp; {{$data->last_name}} </td>
+                                    <td> {{$data->email}} </td>
+                                    <td> {{$data->mobile}} </td>
+                                    <td> {{$data->created_at}} </td>
                                     <td class="row justify-content-center">
-                                         <a href="{{ url('admin/contactform/'.$data->id.'/show') }}" class=" btn btn-primary"><i class="fa fa-eye"></i></i></a>
+                                         <a href="{{ url('admin/contactform/'.$data->id) }}" class=" btn btn-primary"><i class="fa fa-eye"></i></i></a>
                                         <form action="{{ url('admin/contactform/'.$data->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')

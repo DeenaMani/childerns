@@ -132,3 +132,32 @@ if (! function_exists('paymentType')) {
         }
     }
 }
+
+
+if (! function_exists('days_convert')) {
+    function days_convert($days) {
+        switch ($days) {
+            case '30':
+                return "1 Month";
+                break;
+            case '90':
+                return "3 Months";
+                break;
+            case '180':
+                return "6 Months";
+                break;
+            case '360':
+                return "1 Year";
+                break;
+            case '720':
+                return "2 Years";
+                break;
+            case '1800':
+                return "5 Years";
+                break;
+            default:
+                return "O Days";
+                break;
+        }
+    }
+}

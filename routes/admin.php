@@ -19,8 +19,10 @@ use App\Http\Controllers\Admin\TermsController;
 use App\Http\Controllers\Admin\TopicController;
 use App\Http\Controllers\Admin\WhychooseController;
 use App\Http\Controllers\Admin\BookingsController;
-
-
+use App\Http\Controllers\Admin\ContactFormController;
+use App\Http\Controllers\Admin\EnquiryController;
+use App\Http\Controllers\Admin\FeedbackController;
+use App\Http\Controllers\Admin\FreeSessionController;
 
 Route::get('/login',[Logincontroller::class,'show'])->name('login.show');
 Route::post('/login',[Logincontroller::class,'login'])->name('admin.login.perform');
@@ -92,10 +94,22 @@ Route::group(['middleware' => ['auth:web'] ],function(){
     //Competitite Exam
     Route::resource('/competitite-exam',CompetititeExamsController::class);
     Route::get('/competitite-exam/status/{id}/{status}',[CompetititeExamsController::class, 'status']);
+    Route::get('/competitite-exam/pdf-status/{id}/{status}',[CompetititeExamsController::class, 'pdfStatus']);
+    Route::get('/competitite-exam/{id}', [CompetititeExamsController::class, 'getcompetitite']);
+    route::get('/competitite-exam/{id}/pdf',[CompetititeExamsController::class,'addpdf']);
+    Route::post('/pdf_store', [CompetititeExamsController::class,'pdf_store']);
+    Route::get('/pdf-get', [CompetititeExamsController::class,'pdf_get'])->name('pdf.get');
+    Route::delete('/delete-pdf/{id}', [CompetititeExamsController::class,'delete'])->name('pdf.destroy');
 
     //Students
     Route::resource('/student',StudentController::class);
     Route::get('/student/status/{id}/{status}',[StudentController::class, 'status']);
+
+    //Forms
+    Route::resource('/contactform',ContactFormController::class);
+    Route::resource('/freesession',FreeSessionController::class);
+    Route::resource('/enquiry',EnquiryController::class);
+    Route::resource('/feedback',FeedbackController::class);
 
     //terms
     Route::resource('/terms',TermsController::class);

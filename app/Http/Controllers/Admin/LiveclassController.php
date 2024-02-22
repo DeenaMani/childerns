@@ -90,7 +90,7 @@ class LiveclassController extends Controller
         $this -> validate ($request, [
             'category_id'   => 'required',
             'course_id'     => 'required',
-            'topic_id'      => 'required',
+            'topic'      => 'required',
             'exam_type'     => 'required',
             'meeting_link'  => 'required|url',
             'date'          => 'required',

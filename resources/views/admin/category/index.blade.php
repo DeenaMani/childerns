@@ -53,7 +53,7 @@
                             <tbody>
                             @foreach ($results as $key => $data)
                                 <tr>
-                                    <td> {{$data->id}} </td>
+                                    <td> {{ $loop->index + 1 }} </td>
                                     <td> <img src="{{url('public/image/category/'.$data->image)}}" width="50px"> </td>
                                     <td> {{$data->category_name}} </td>
                                     <td> <div class="form-check form-switch">

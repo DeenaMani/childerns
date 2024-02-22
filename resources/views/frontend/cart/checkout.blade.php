@@ -1,5 +1,22 @@
 @extends('layouts.app')
 @section('main-content')
+
+
+@php
+	$setting = cache('settings');
+	$total = 0 ;
+	foreach($cart as $row) {
+
+	    $cart_type = $row->cart_type ;
+	    if($cart_type == 1){
+	         $category = App\Models\Category::where('id',$row->product_id)->where('status',1)->first();
+	        $total += $category->price;
+	    }
+	}
+ @endphp
+
+
+        
 	<section class="checkout">
 		<div class="container">
 			<div class="h1 text-center mb-md-5 md-3">Checkout</div>
@@ -42,7 +59,7 @@
 				    					<option value="" >Select State</option>
 				    					@if(count($states))
 				    					@foreach($states as $state)
-				    					<option value="{{$state->id}}" >{{$state->state_name}}</option>
+				    					<option value="{{$state->id}}"  >{{$state->state_name}}</option>
 				    					@endforeach
 				    					@endif
 				    					
@@ -50,7 +67,7 @@
 				    			</div>
 				    			<div class="col-sm-4 mb-3">
 				    				<label>Town / City<span class="text-danger">*</span></label>
-				    				<input type="text" name="city" id="city" placeholder="Enter Town / City" class="form-control" required>
+				    				<input type="text" name="city" id="city" placeholder="Enter Town / City" class="form-control"  required>
 				    			</div>
 				    			
 				    			<div class="col-sm-4 mb-3">
@@ -68,29 +85,7 @@
 			
       
 	    		</div>
-
-	    		<div class="payment-method pb-4" style="display: none;">
-	    			<form method="post" action="{{route('paymentUpdate')}}">
-	    				 @csrf
-	    				<input type="hidden" name="booking_id" id="bookingId"  value="">
-						<div class="title">Payment Method</div>
-						
-						<div class="Payment-type">
-							<div class="form-check">
-							  <input type="radio" class="form-check-input" id="payment_type" name="payment_type" value="2">
-							  <label class="form-check-label" for="radio2">Cash</label>
-							</div>
-						</div>
-						<div class="Payment-type">
-							<div class="form-check">
-							  <input type="radio" class="form-check-input" id="payment_type" name="payment_type" value="1">
-							  <label class="form-check-label" for="radio3">Online</label>
-							</div>
-						</div>
-	    	
-		    		<button type="submit" class="btn-theme-1">Continue to pay</button>
-					</div>
-				</form>
+	    		
 
 	    		<!-- <div class="payment-method" style="display: none;">
 	    			
@@ -129,7 +124,29 @@
 				    			</div>
 				    		</div>
 			              @php }
+			              else{
+
+
+			              	$course= App\Models\Course::where('id',$row->product_id)->where('status',1)->first(); $total += $course->price;
 			                @endphp
+			                
+
+
+			                <div class="order-course">
+				    			<div class="row">
+				    				<!-- <div class="col-lg-3 col-sm-2 col-3 text-center">
+				    					<img src="assets/images/cources/course1.jpg" alt="course1">
+				    				</div> -->
+				    				<div class="col-lg-8 col-md-7 col-sm-7 col-7">
+				    					<h6 class="course-name"> {{$course->course_name}}</h6>
+
+				    				</div>
+				    				<div class="col-lg-4 col-md-5 col-sm-5 col-5">
+				    					<div class="course-price">{{get_price($course->price)}}  </div>
+				    			    </div>
+				    			</div>
+				    		</div>
+			                @php } @endphp
 
 			               
             @endforeach
@@ -156,7 +173,11 @@
 <script src="{{assets('js/jquery.validate.min.js')}}"></script>
 <script type="text/javascript">
 	$('#checkoutPost').validate({
+
     	submitHandler: function(f) {
+    		var email = $("#email").val();
+    		var phone = $("#mobile").val();
+
 			var form = $("#checkoutPost");
 			//alert(form.serialize());
 			$.ajax({
@@ -165,9 +186,18 @@
 			dataType: 'json',
 			data: form.serialize(),
 			success:function(data) {
-				console.log(data.bookingId);
-				$(".payment-method").show();
-				$("#bookingId").val(data.bookingId)
+				// console.log(data.bookingId);
+				// console.log(data.bookingId);
+				//$(".payment-method").show();
+				// $(".payment-method script").attr("data-prefill.name",email);
+				// $(".payment-method script").attr("data-prefill.email",phone);
+				// $(".payment-method script").attr("data-prefill.order_id",bookingId);
+				// $(".payment-method script").attr("data.orderId",bookingId);
+				//$("#bookingId").val(data.bookingId)
+				
+				window.location = "{{url('payments')}}/"+ data.bookingId;
+
+				//$("#paymentCard").submit();
 			}
         });
         return false;

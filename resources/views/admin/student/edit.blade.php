@@ -9,7 +9,7 @@
                 <div class="row align-items-center">
                     <div class="col-sm-5 col-xl-6">
                         <div class="page-title">
-                            <h3 class="mb-1 font-weight-bold">Edit Instructor</h3>
+                            <h3 class="mb-1 font-weight-bold">Edit Students</h3>
                         </div>
                     </div>
                 </div>
@@ -19,56 +19,72 @@
         <div class="page-content-warpper mt--45">
             <div class="container-fluid">
                 <div class="card ">
+                    <div class="card-header">
+                    <h4>Edit Students</h4>
+                    </div>
                     <div class="card-body">
                          @include('layouts.partials.messages')
-                        <form action="{{ url('admin/instructor/'.$instructor->id) }}" method="post" enctype="multipart/form-data" >
+                        <form action="{{ url('admin/student/'.$student->id) }}" method="post" enctype="multipart/form-data" >
                             @csrf
                             @method('PUT')
+                              <input type="password" class="form-control mb-3" name="password" value="{{$student->password}}" hidden>
+                       
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <label for="instructor_image"> Instructor Image </label>
-                                    <input type="file" class="form-control mb-3" name="instructor_image" value="{{$instructor->instructor_image}}">
-                                    <img src="{{url('public/image/instructor/'.$instructor->instructor_image)}}" width="50px"> <br>
-                                </div>  
 
                                 <div class="col-lg-6">
-                                    <label for="instructor_name"> Instructor Name </label>
-                                    <input type="text" class="form-control mb-3" name="instructor_name" value="{{$instructor->instructor_name}}" required>
+                                    <label for="first_name"> First Name </label>
+                                    <input type="text" class="form-control mb-3" name="first_name" value="{{$student->first_name}}">
                                 </div>
 
                                 <div class="col-lg-6">
-                                    <label for="subject"> Subject </label>
-                                    <input type="text" class="form-control mb-3" name="subject" value="{{$instructor->subject}}" required>
+                                    <label for="last_name"> Last Name </label>
+                                    <input type="text" class="form-control mb-3" name="last_name" value="{{$student->last_name}}">
                                 </div>
 
                                 <div class="col-lg-6">
-                                    <label for="skills"> Skills </label>
-                                    <input type="text" class="form-control mb-3" name="skills" value="{{$instructor->skills}}">
+                                    <label for="phone"> Phone Number </label>
+                                    <input type="text" class="form-control mb-3" name="phone" value="{{$student->phone}}">
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <label for="email"> E Mail </label>
-                                            <input type="text" class="form-control mb-3" name="email" value="{{$instructor->email}}" required>
-                                        </div>
-
-                                        <div class="col-lg-12">
-                                            <label for="phone">  Phone Number </label>
-                                            <input type="text" class="form-control mb-3" name="phone" value="{{$instructor->phone}}" required>
+                                            <input type="text" class="form-control mb-3" name="email" value="{{$student->email}}">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6">
-                                    <label for="about">  About </label>
-                                    <textarea type="text" class="form-control mb-3" name="about" rows="5">{{$instructor->about}}</textarea>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="address"> Address</label>
+                                    <input class="form-control" type="text" name="address" value="{{$student->address}}">
                                 </div>
-                               
+
+
+                                <div class="col-lg-6 mb-3">
+                                    <label for="state"> State </label>
+                                    <select id="state" name="state" class="form-select form-control">
+                                        <option value="" disabled="" selected="">Select State</option>
+                                        @foreach ($states as $state)
+                                        <option value="{{$state->id}}" {{$student->state ==  $state->id ? "selected" :"" }}>{{$state->state_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-6 mb-3">
+                                    <label for="city"> City </label>
+                                    <input id="city" name="city" class="form-select form-control" value="{{$student->city}}">
+                                </div>
+
+                                <div class="col-lg-6 mb-3">
+                                    <label for="pincode"> Post Code </label>
+                                    <input class="form-control" type="text" name="pincode" value="{{$student->pincode}}">
+                                </div>
+
                                 <div class="col-lg-12 p-3 ">
-                                    <input type="submit" class="btn btn-primary text-white" style="float:right;" value="Save instructor">
+                                    <input type="submit" class="btn btn-primary text-white" style="float:right;" value="Update Student">
                                 </div>
-                            </div>                                 
+                            </div>                                
                         </form>
                     </div>
                 </div> 

@@ -45,7 +45,7 @@
                             <tbody>
                                 @foreach ($results as $key => $data)
                                 <tr>
-                                    <td> {{$data->id}} </td>
+                                    <td> {{ $loop->index + 1 }} </td>
                                     <td> {{$data->exam_type}} </td>
                                     <td> {{$data->topic}} </td>
                                     <td> <div class="form-check form-switch">

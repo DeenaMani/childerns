@@ -28,33 +28,41 @@
                 </div>
             </div>
             <div class="story">
-                <div class="row ">
-                    <div class="col-lg-3 col-sm-6 d-flex justify-content-center">
-                        <img src="{{assets()}}/images/course.png">
-                        <div class=" d-inline-block">
-                            <div class="count h2">60</div>
-                            <div class="text">Active Courses</div>
+                <div class="row ps-5">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="d-flex about-count">
+                            <img src="{{assets()}}/images/course.png">
+                            <div class=" d-inline-block">
+                                <div class="count h2">{{$course}}</div>
+                                <div class="text">Active Courses</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 d-flex justify-content-center">
-                        <img src="{{assets()}}/images/teacher.png">
-                        <div class=" d-inline-block">
-                            <div class="count h2">50</div>
-                            <div class="text">Teachers & Mentors</div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="d-flex about-count">
+                            <img src="{{assets()}}/images/teacher.png">
+                            <div class=" d-inline-block">
+                                <div class="count h2">{{$teacher}}</div>
+                                <div class="text">Teachers & Mentors</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 d-flex justify-content-center">
-                        <img src="{{assets()}}/images/student.png">
-                        <div class=" d-inline-block">
-                            <div class="count h2">420</div>
-                            <div class="text">Students Learning</div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="d-flex about-count">
+                            <img src="{{assets()}}/images/student.png">
+                            <div class=" d-inline-block">
+                                <div class="count h2">{{$student}}</div>
+                                <div class="text">Students Learning</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 d-flex justify-content-center">
-                        <img src="{{assets()}}/images/year.png">
-                        <div class=" d-inline-block">
-                            <div class="count h2">10</div>
-                            <div class="text">Year Experience</div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="d-flex about-count">
+                            <img src="{{assets()}}/images/year.png">
+                            <div class=" d-inline-block">
+                                <div class="count h2">10</div>
+                                <div class="text">Year Experience</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -89,7 +97,7 @@
     <section class="about-bottom">
         <div class="container">
             <div class="col-lg-8 mx-auto text-center">
-                <h2 class="head pb-5"><span>What Make Us Spcecial?</span></h2>
+                <h2 class="head pb-5"><span>What Make Us Special?</span></h2>
             </div>
             <div class="row">
                 <div class="col-lg-6">

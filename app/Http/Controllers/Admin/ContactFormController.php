@@ -10,7 +10,7 @@ class ContactFormController extends Controller
 {
     public function index()
     {
-        $result = ContactForm::latest()->paginate(10);
+        $result = ContactForm::all();
         
         return view ('admin.contactform.index',compact('result'));
     }
@@ -34,9 +34,9 @@ class ContactFormController extends Controller
 
     public function show(string $id)
     {
-        $contactform = ContactForm::find($id);
+        $result = ContactForm::find($id);
 
-        return view('admin.contactform.show',compact('contactform','id'));
+        return view('admin.contactform.show',compact('result','id'));
         
     }
 

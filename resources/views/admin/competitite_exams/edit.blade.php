@@ -27,38 +27,42 @@
                         <form action="{{ url('admin/competitite-exam/'.$competitite_exam->id) }}" method="post" enctype="multipart/form-data" >
                             @csrf
                             @method('PUT')
-                            <div class="row"> 
-                                <div class="col-lg-6">
-                                    <div class="row">
-                                        <div class="col-lg-12">              
-                                            <label for="exam_name"> Exam Name </label>
-                                            <input type="text" class="form-control mb-3" name="exam_name" value="{{old('exam_name',$competitite_exam->exam_name)}}" required>
-                                        </div>
 
-                                        <div class="col-lg-12">              
-                                            <label for="exam_name">Image </label>
-                                            <input type="file" class="form-control mb-3" name="image_name">
-                                             <img src="{{url('public/image/exams/'.$competitite_exam->image_name)}}" height="50px" class="mb-3" >
-
-                                        </div>
-
-                                         <div class="col-lg-12">
-                                            <label for="description"> Exam Short Description</label>
-                                            <textarea  class="form-control mb-3" name="short_description" id="summernote-basic-1" required>{{old('short_description',$competitite_exam->short_description)}}</textarea>
-                                        </div>  
-
-                                      
-                                    </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label for="exam_type"> Exam Type </label> <br>
+                                    <select class="form-control mb-4" name="exam_type" required>                                
+                                        <option disabled selected> Select Exam Type </option>
+                                        <option value="1" {{$competitite_exam->exam_type == '1' ? 'selected' : ''}}> Competitive </option>
+                                        <option value="2" {{$competitite_exam->exam_type == '2' ? 'selected' : ''}}> Others </option>
+                                    </select>
                                 </div>
 
-                                  <div class="col-lg-12">
-                                            <label for="description"> Exam Description </label>
-                                            <textarea  class="form-control mb-3" name="description" id="summernote-basic" required>{{old('description',$competitite_exam->description)}}</textarea>
-                                        </div>                                
-                                       
-                                        <div class="col-lg-12 p-3 ">
-                                            <input type="submit" class="btn btn-primary text-white" value="Update">
-                                        </div>
+                                <div class="col-lg-6">              
+                                    <label for="exam_name"> Exam Name </label>
+                                    <input type="text" class="form-control mb-3" name="exam_name" value="{{old('exam_name',$competitite_exam->exam_name)}}" required>
+                                </div>
+
+                                <div class="col-lg-6">              
+                                    <label for="exam_name">Image </label>
+                                    <input type="file" class="form-control mb-3" name="image_name">
+                                        <img src="{{url('public/image/exams/'.$competitite_exam->image_name)}}" height="50px" class="mb-3" >
+
+                                </div>
+
+                                    <div class="col-lg-12">
+                                    <label for="description"> Exam Short Description</label>
+                                    <textarea  class="form-control mb-3" name="short_description" id="summernote-basic-1" required>{{old('short_description',$competitite_exam->short_description)}}</textarea>
+                                </div>  
+
+                                <div class="col-lg-12">
+                                    <label for="description"> Exam Description </label>
+                                    <textarea  class="form-control mb-3" name="description" id="summernote-basic" required>{{old('description',$competitite_exam->description)}}</textarea>
+                                </div>                                
+                                
+                                <div class="col-lg-12 p-3 ">
+                                    <input type="submit" class="btn btn-primary text-white" value="Update Competitive Exam">
+                                </div>
                             </div>                              
                         </form>
                     </div>

@@ -11,5 +11,5 @@ class Student extends Model
 
     protected $tabels = 'students';
 
-    protected $guraded = [ ];
+    protected $guarded = [ ];
 }

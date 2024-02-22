@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Student;
 use App\Models\Category;
+use App\Models\Course;
 use App\Models\BookingData;
 use App\Models\BookingBillingAddress;
 use App\Models\BookingProduct;
@@ -108,7 +109,7 @@ class CartController extends Controller
         $userToken = Session::get('user_token');
         //$userToken = "17076255209552649749";
         $cart = Cart::where('user_id',$userToken)->get();
-
+        if(count($cart)  ==0 ) return redirect(''); 
         $email = session('email');
         $user = Student::where('email',$email)->first() ;
         $states = DB::table('states')->get() ;
@@ -192,6 +193,16 @@ class CartController extends Controller
                             $validity_days = $category->validity_days;
                             $product_type = 1;
                             $product_names[] =  $category->category_name;
+                        }
+                        else{
+                           $course= Course::where('id',$value->product_id)->where('status',1)->first(); 
+                          
+                            $product_price  = $course->price;
+                            $product_name = $course->course_name;
+                            $product_id = $course->id;
+                            $validity_days = $course->validity;
+                            $product_type = 2;
+                            $product_names[] =  $course->product_name;
                         }
 
                     }

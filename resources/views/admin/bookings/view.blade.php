@@ -138,6 +138,10 @@
                                     </tr>
                                     @endforeach
                                 </table>
+
+                                <div class="col-lg-12">
+                                    <a href="{{url('/admin/booking')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i>Go Back</a>
+                                </div>
                              </div>
 
                          </div>

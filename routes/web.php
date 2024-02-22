@@ -17,6 +17,10 @@ Route::get('/about-us',[HomeController::class,'about']);
 Route::get('/privacy-policy',[HomeController::class,'pages']);
 Route::get('/terms-conditions',[HomeController::class,'pages']);
 Route::get('/faq',[HomeController::class,'faq']);
+Route::post('/contact-post',[HomeController::class,'contactpost'])->name('contactpost');
+Route::post('/free-session',[HomeController::class,'freesession'])->name('freesession');
+Route::post('/enquiry',[HomeController::class,'enquiry'])->name('enquiry');
+Route::post('/feedback',[HomeController::class,'feedback'])->name('feedback');
 //Course Controller
 Route::get('/courses',[CoursesController::class,'index']);
 Route::get('/study-material',[CoursesController::class,'resource']);

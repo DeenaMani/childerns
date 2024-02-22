@@ -178,14 +178,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script type="text/javascript">
     $(".category").change(function(){
-        var multiple=  $(this).find(':selected').attr('data-multiple');
+        category();
+    });
+
+    function category(){
+        var multiple= $(".category").find(':selected').attr('data-multiple');
         if( multiple  == 1){
                 $(".mutiple_is_div").hide();
-                 $(".mutiple_is_div input").val("");
+                $(".mutiple_is_div input").val("");
         }
         else{
              $(".mutiple_is_div").show();
         }
-    });
+    }
+category();
 </script>
 @endpush

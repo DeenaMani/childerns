@@ -45,7 +45,7 @@
                             <tbody>
                                 @foreach ($results as $key => $data)
                                 <tr>
-                                    <td> {{$data->id}} </td>
+                                    <td> {{ $loop->index + 1 }} </td>
                                       <td> <img src="{{url('public/image/exams/'.$data->image_name)}}" width="50px"> </td>
                                     <td> {{$data->exam_name}} </td>
                                 
@@ -56,10 +56,11 @@
                                     </td>
                                     <td class="row justify-content-center"> 
                                         <a href="{{ url('admin/competitite-exam/'.$data->id.'/edit') }}" class=" btn btn-primary"><i class="fa fa-edit"></i> </a>
+                                        <a href="{{ url('admin/competitite-exam/'.$data->id.'/pdf') }}" class=" btn btn-primary mx-2"><i class="fa fa-add"></i> </a>
                                         <form action="{{ url('admin/competitite-exam/'.$data->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="mx-3 btn btn-danger" onclick="return confirm('Are you sure to delete ?')" ><i class="fa fa-trash"></i></button> 
+                                            <button type="submit" class="mx-1 btn btn-danger" onclick="return confirm('Are you sure to delete ?')" ><i class="fa fa-trash"></i></button> 
                                         </form>
                                     </td> 
                                 </tr>

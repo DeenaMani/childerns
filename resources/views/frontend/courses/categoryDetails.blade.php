@@ -30,10 +30,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="">
-                         
-                            <style type="text/css">
-                                
-                            </style>
+                   
                 @if($courses)
                 <h3 class=" mb-3 course_title">Subject Wise Topics</h3>
                 <nav>

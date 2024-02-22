@@ -5,7 +5,7 @@
 <section class="page-warpper-content" style="background-image:url('{{assets()}}/images/background-image-2.jpg');">
             <div class="container">
                 <div class="row content">
-                    <h1>Courses For You Children's</h1>
+                    <h1>Courses For Your Children</h1>
                 </div>
             </div>
         </section>
@@ -37,7 +37,7 @@
                 @if($results)
                 @foreach($results as $row)
                 <div class="course-list mt-5">
-                    <h3 class="title"> <span>{{$row->category_name}} {{$row->id}}</span> </h3>
+                    <h3 class="title"> <span>{{$row->category_name}}</span> </h3>
                     <div class="row">
 
                         @php
@@ -50,16 +50,21 @@
                     
                         @foreach($courses as $course)
                         @php 
-                            if($row->is_mutiple  == 0) $slug = $course->slug; 
+                             $current_slug ="";
+                            if($row->is_mutiple  == 0) 
+                                $current_slug = $course->slug; 
+                            if($row->is_mutiple  == 1)
+                                $current_slug = $slug."/".$course->slug;
+
 
                         @endphp
                         <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb-3">
                             <div class="course-box">
                                 <div class="img">
-                                    <a href="{{url('courses/'.$slug.'/'.$course->slug)}}"><img src="{{assets()}}image/course/{{$course->course_image}}"></a>
+                                    <a href="{{url('courses/'.$current_slug)}}"><img src="{{assets()}}image/course/{{$course->course_image}}"></a>
                                 </div>
                                 <div class="content">
-                                    <div class="course-name h6"><a href="{{url('courses/'.$slug.'/'.$course->slug)}}">{{$course->course_name}}</a>
+                                    <div class="course-name h6"><a href="{{url('courses/'.$current_slug)}}">{{$course->course_name}}</a>
 
 
                                     </div>
@@ -69,10 +74,10 @@
                                     <div class="enroll">
                                         <div class="row align-items-center">
                                             <div class="col-lg-6 col-sm-6 col-6 pe-0">
-                                                <div class="price d-inline-block">₹ 1300 <del class="text-muted d-inline-block"> ₹ 1500</del></div>
+                                                <div class="price d-inline-block">{{get_price($course->price)}} <del class="text-muted d-inline-block"> {{get_price($course->offered_price)}}</del></div>
                                             </div>
-                                            <div class="col-lg-6 col-sm-6 col-6 text-end">
-                                                <a href="javascript:void(0)" class="btn-enroll rounded-2">Add To Cart</a>
+                                          <div class="col-lg-6 col-sm-6 col-6 text-end">
+                                                <a href="javascript:void(0)" class="btn-enroll rounded-2 add_to_cart" data-id="{{$course->id}}" data-type="2"  >Add To Cart</a>
                                             </div>
                                         </div>
                                     </div>
@@ -93,7 +98,7 @@
                             <table class="table table-bordered">
                               <thead>
                                 <tr>
-                                  <th width="200px" scope="col" width="10%">Category</th>
+                                  <th scope="col" >Category</th>
                                    @foreach($courses as $key => $course)
                                   <th scope="col">{{$course->course_name}}</th>
                                   @endforeach
@@ -213,7 +218,7 @@
                                     @php $validity = 0; @endphp 
                                      @foreach($courses as $key => $course)  
                                     
-                                    <td>{{$course->validity}} Days</td> 
+                                    <td>{{days_convert($course->validity)}}</td> 
                                      @endforeach
                                     <td>-</td>
                                 </tr>

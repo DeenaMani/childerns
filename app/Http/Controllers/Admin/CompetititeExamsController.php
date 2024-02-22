@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CompetititeExamPdf;
 use App\Models\CompetititeExams;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -34,8 +35,9 @@ class CompetititeExamsController extends Controller
     public function store(Request $request)
     {
         $this -> validate ($request, [
-            'exam_name'  => 'required',
-            'description'       => 'required',
+            'exam_name'    => 'required',
+            'exam_type'    => 'required',
+            'description'  => 'required',
         ]);
 
         $data = $request->all();
@@ -81,8 +83,9 @@ class CompetititeExamsController extends Controller
     public function update(Request $request, string $id)
     {
         $this -> validate ($request, [
-            'exam_name'  => 'required',
-            'description'       => 'required',
+            'exam_name'    => 'required',
+            'exam_type'    => 'required',
+            'description'  => 'required',
         ]);
         $data = $request->all();
          if ($request->hasfile('image_name'))
@@ -122,5 +125,89 @@ class CompetititeExamsController extends Controller
         $competitite_exam->status =   $status ? $status : 0;
         $competitite_exam->save();
         echo json_encode(array("status" => 1));
+    }
+
+
+    public function addpdf($id) 
+    {
+        $result = CompetititeExamPdf::where('competitite_exams_id',$id)->get();
+       // pr($results);die;
+        $competitite_exam = CompetititeExams::where('id',$id)->first();
+        return view ('admin.competitite_exams.pdf',compact('result','id','competitite_exam'));
+    }
+
+
+    public function pdf_get()
+    {
+        $pdfs = CompetititeExamPdf::all();
+        return response()->json($pdfs);
+    }
+
+    public function pdf_store(Request $request)
+    {
+        // Validate request data
+        $request->validate([
+            'pdf_name'        => 'nullable|file|mimes:pdf',
+        ]);
+
+        $data = $request->all();
+
+        if ($request->hasfile('pdf_name'))
+        {  //check file present or not
+            $images = $request->file('pdf_name'); //get the file
+            $image = time().'.'.$images->getClientOriginalExtension();
+            $destinationPath = public_path('/pdf/competitite_exam'); //public path folder dir
+            $images->move($destinationPath, $image);  //move to destination you mentioned 
+            $data['pdf_name']=$image;
+        } 
+
+        $pdf = new CompetititeExamPdf;
+        $pdf = CompetititeExamPdf::create($data);
+
+        return back()->with('success','Added Successfully');
+    }
+
+    public function delete($id)
+    {
+        $pdf = CompetititeExamPdf::find($id);
+        if (!$pdf) {
+            return  back()->with('error',"pdf Error delete");
+        }
+
+        $pdf->delete();
+
+        return  back()->with('error', 'Resource deleted successfully');
+    }
+
+    public function pdf_edit($id) {
+
+        $data = CompetititeExamPdf::find($id);   
+        return response()->json($data);
+
+    }
+
+    public function pdf_update(Request $request, $id) {
+
+        // Validate request data
+        $request->validate([
+            'pdf_name'        => 'nullable|file|mimes:pdf',
+        ]);
+
+        $data = $request->all();
+
+        if ($request->hasfile('pdf_name'))
+        {  //check file present or not
+            $images = $request->file('pdf_name'); //get the file
+            $image = time().'.'.$images->getClientOriginalExtension();
+            $destinationPath = public_path('/pdf/competitite_exam'); //public path folder dir
+            $images->move($destinationPath, $image);  //move to destination you mentioned 
+            $data['pdf_name']=$image;
+        } 
+
+        $pdf = new CompetititeExamPdf;
+        $pdf -> update($data);
+
+        return back()->with('success','Added Successfully');
+
     }
 }

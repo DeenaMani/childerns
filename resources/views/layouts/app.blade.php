@@ -15,16 +15,7 @@ $setting = cache('settings');
   <link rel="stylesheet" href="{{assets()}}css/owl.carousel.min.css">
   <link rel="stylesheet" href="{{assets()}}css/owl.theme.default.min.css">
   @stack('links')
-  <link rel="stylesheet" href="{{assets()}}css/style.css?v=1.4">
-
-  <style type="text/css">
-    input.btn-primary {
-      float: right;
-    }
-    lable {
-      text-transform: capitalize;
-    }
-  </style>
+  <link rel="stylesheet" href="{{assets()}}css/style.css?v=1.5">
 
 </head>
 <body>
@@ -204,12 +195,12 @@ $setting = cache('settings');
                         </div>
                       </li>
                     </ul>
-                    <form method="post" action="" id="subscribe">
+                   <!--  <form method="post" action="" id="subscribe">
                       <div class="input-group">
                     <input type="text" class="form-control" placeholder="Your Email">
                     <button class="input-group-text" type="submit">Free Session</button>
                   </div>
-                    </form>
+                    </form> -->
             </div>
       
         </div>

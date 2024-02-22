@@ -16,7 +16,7 @@
                     <div class="text-center py-3 m4-5">
                         <h3 class=""> Contact Info </h3>
                         <p class="text-muted">We are here for you don't hesitate to ask us,
-                        Feel Free to contact us in bussiness Hours</p>
+                        Feel Free to contact us in business Hours</p>
                     </div>
                     <div class="row m-0">
                         <div class="col-lg-4 col-md-4 pt-3 mb-3">
@@ -33,7 +33,7 @@
                             <div class="location">
                                 <div class="icon"><i class="fa fa-phone text-color-1 pe-3"></i></div>
                                 <div class="contact-info-detail"> 
-                                    <div class="title">contact</div>
+                                    <div class="title">Contact</div>
                                     <p>Phone: <span><a href="tel:" class="mb-2">{{$setting->email}}</a></span></p>
                                     <p>E-Mail: <span><a href="mailto:" class="mb-2">{{$setting->phone}}</a></span></p>
                                 </div>
@@ -58,46 +58,35 @@
     <section class="contact-form">
         <div class="container">
             <div class="col-md-8 mx-auto">
-                <form class=" row" id="contact-form" action="contact.html" method="post">
+                <form class=" row" id="contact-form" action="{{route('contactpost')}}" method="post">
+                    @csrf
+                    
                     <div class="title">Fill the form below so we can get to know you</div>
+                    <div>@include('layouts.partials.messages')</div>
                     <div class="form-group col-lg-6 mb-4 mb-2">
                         <!-- <label class="form-label" for="first-name"> First Name* </label> -->
-                        <input class="form-control" type="text" name="first-name" id="first-name" value="" placeholder="First Name*">
-                        <div class="validation-error d-none font-size-13">
-                            <p class="mb-0">This Field is required</p>
-                        </div>
+                        <input class="form-control" type="text" name="first_name" id="first_name" value="" placeholder="First Name*" required>
                     </div>
 
                     <div class="form-group mb-4 mb-2 col-lg-6">
                         <!-- <label class="form-label" for="last-name"> Last Name* </label> -->
-                        <input class="form-control" type="text" name="last-name" id="last-name" value="" placeholder="Last Name*">
-                        <div class="validation-error d-none font-size-13">
-                            <p class="mb-0">Email must be a valid email address</p>
-                        </div>
+                        <input class="form-control" type="text" name="last_name" id="last_name" value="" placeholder="Last Name*" required>
+                        
                     </div>
 
                     <div class="form-group mb-4 mb-2 col-lg-6">
                         <!-- <label class="form-label" for="email"> Email* </label> -->
-                        <input class="form-control" type="email" name="email" id="email" value="" placeholder="E Mail*">
-                        <div class="validation-error d-none font-size-13">
-                            <p class="mb-0">This Field is required</p>
-                        </div>
+                        <input class="form-control" type="email" name="email" id="email" value="" placeholder="E Mail*" required>
                     </div>
 
                     <div class="form-group mb-4 col-lg-6">
                         <!-- <label class="form-label" for="phone"> Phone number (If optional) </label> -->
-                        <input class="form-control" type="tel" name="phone" id="phone" value="" placeholder="Phone No">
-                        <div class="validation-error d-none font-size-13">
-                            <p class="mb-0">This Field is required</p>
-                        </div>
+                        <input class="form-control" type="tel" name="mobile" id="mobile" value="" placeholder="Mobile No" required>
                     </div>
 
                     <div class="form-group mb-4">
                         <!-- <label class="form-label" for="message"> Project Details* </label> -->
-                        <textarea class="form-control" type="tel" name="message" id="message" rows="4" value="" placeholder="Enter your Requirement*"></textarea>
-                        <div class="validation-error d-none font-size-13">
-                            <p class="mb-0">This Field is required</p>
-                        </div>
+                        <textarea class="form-control" type="tel" name="message" id="message" rows="4" value="" placeholder="Enter your Requirement*" required></textarea>
                     </div>
                     <div><button type="submit" class="btn-theme-1">Send Message</button></div>
                 </form>
@@ -106,4 +95,9 @@
     </section>
 @endsection
 @push('scripts')
+<script src="{{assets('js/jquery.validate.min.js')}}"></script>
+<script type="text/javascript">
+    $('#contact-form').validate({})
+</script>
+    
 @endpush

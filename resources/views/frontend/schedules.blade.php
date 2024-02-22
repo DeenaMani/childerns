@@ -4,7 +4,7 @@
 <section class="page-warpper-content" style="background-image:url('{{assets()}}/images/background-image-2.jpg');">
         <div class="container">
             <div class="row content">
-                <h1>Live Class Schedules</h1>
+                <h1>Live Classes and Q&A Sessions</h1>
             </div>
         </div>
     </section>

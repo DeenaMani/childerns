@@ -48,7 +48,7 @@
                             <tbody>
                                 @foreach ($results as $key => $data)
                                 <tr data-id="{{$data->id}}">
-                                    <td> {{$key + 1 }} </td>
+                                    <td> {{ $loop->index + 1 }}  </td>
                                     <td> {{$data->first_name." ".$data->last_name}} <br> {{$data->email}}</td>
                                     <td> <a href="{{ url('admin/bookings/'.$data->id.'/view') }}" >{{$data->booking_no}}</a></td>
                                     <td> <select class="form-control booking_status">

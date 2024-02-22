@@ -45,7 +45,7 @@
                             <tbody>
                                 @foreach ($results as $key => $data)
                                 <tr>
-                                    <td> {{$data->id}} </td>
+                                    <td> {{ $loop->index + 1 }} </td>
                                     <td> {{$data->first_name}} &nbsp; {{$data->last_name}} </td>
                                     <td> {{$data->email}}</td>
                                     <td> {{$data->phone}}</td>

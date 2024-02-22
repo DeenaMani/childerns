@@ -115,6 +115,39 @@
                      <span> Competitite Exams </span>
                   </a>
                </li>  
+               <li class="">
+                  <a href="javascript:void(0);" class="side-nav-link" aria-expanded="false">
+                     <i class="bx bxs-file"></i>
+                     <span>Forms</span>
+                     <span class="menu-arrow"></span>
+                  </a>
+                  <ul aria-expanded="false" class="nav-second-level mm-collapse">
+                     <li class="side-nav-item">
+                        <a href="{{ url('admin/contactform') }}" class="side-nav-link" aria-expanded="false">
+                           <!-- <i class="fe-package"></i> -->
+                           <span> Contact Form</span>
+                        </a>
+                     </li>
+                     <li class="side-nav-item">
+                         <a href="{{ url('admin/freesession') }}" class="side-nav-link" aria-expanded="false">
+                        <!-- <i class="bx bx-circle"></i> -->
+                        <span>Free Session </span>
+                        </a>
+                     </li>
+                     <li class="side-nav-item">
+                         <a href="{{ url('admin/enquiry') }}" class="side-nav-link" aria-expanded="false">
+                        <!-- <i class="bx bx-circle"></i> -->
+                        <span>Enquiry </span>
+                        </a>
+                     </li>
+                     <li class="side-nav-item">
+                          <a href="{{ url('admin/feedback') }}" class="side-nav-link" aria-expanded="false">
+                           <!-- <i class="bx bx-circle"></i> -->
+                           <span> Feedback </span>
+                        </a>
+                     </li>
+                  </ul>
+               </li> 
                <li>
                   <a class="side-nav-link" href="{{url('admin/terms')}}">
                      <i class="bx bx-info-circle"></i>

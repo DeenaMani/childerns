@@ -31,7 +31,7 @@
 
 
 					<button class="course collapsed" data-bs-toggle="collapse" data-bs-target="#mainresource-{{$key2}}">
-					<span>{{$course->course_name}}</span></button>
+					<span> {{$course->course_name}}</span></button>
 					
 					<div id="mainresource-{{$key2}}" class="collapse body">
 						@php
@@ -52,7 +52,7 @@
 									<li class="course-topic">
 										<div class="course-title collapsed" data-bs-toggle="collapse" data-bs-target="#chapter-{{$topic->id}}">
 											<span class="pe-2 lesson"><i class="fa-brands fa-youtube"></i></span>
-											<span class="topic">{{$topic->topic}}</span>
+											<span class="topic">{{$key3 + 1}}. {{$topic->topic}}</span>
 											<span class="duration">{{$topic->duration}}</span>
 										</div>
 
@@ -62,10 +62,10 @@
 				                        @endphp
 				                        	@if($resources)
 										<div class="resource-materials collapse" id="chapter-{{$topic->id}}">
-											@foreach($resources as $resource)
+											@foreach($resources as $Key4 => $resource)
 											<div class="row">
 												<div class="col-lg-8 col-8">
-													<p>{{$resource->title}}</p>
+													<p>{{$Key4 + 1}}. {{$resource->title}}</p>
 												</div>
 												<div class="col-lg-4 col-4 text-end video">
 													<a class="btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal"  href="{{$resource->video_link}}" title="{{$resource->title}}">Preview</a>
@@ -99,15 +99,15 @@
                            
 
                         <div class="sub-resource">
-							<button class="course collapsed" data-bs-toggle="collapse" data-bs-target="#resource2">
+							<button class="course collapsed" data-bs-toggle="collapse" data-bs-target="#study{{$key2}}">
 							<span>Study Material’s</span></button>
-							<div id="resource2" class="collapse body">
+							<div id="study{{$key2}}" class="collapse body">
 								<ul class="list-unstyled course-content mb-0">
-									 @foreach($topics as $key3 => $topic)  
+									 @foreach($topics as $pdf_key => $topic)  
 									<li class="course-topic">
 										<div class="course-title collapsed" data-bs-toggle="collapse" data-bs-target="#study-material-{{$topic->id}}">
 											<span class="pe-2 lesson"><i class="fa-brands fa-youtube"></i></span>
-											<span class="topic">{{$topic->topic}}</span>
+											<span class="topic">{{($pdf_key  + 1).". ".$topic->topic}}</span>
 											<span class="duration">{{$topic->duration}}</span>
 										</div>
 
@@ -117,10 +117,10 @@
 				                        @endphp
 				                        	@if($resources)
 										<div class="resource-materials collapse" id="study-material-{{$topic->id}}">
-											@foreach($resources as $resource)
+											@foreach($resources as $pdf_key2 => $resource)
 											<div class="row">
 												<div class="col-lg-8">
-													<p>{{$resource->title}}</p>
+													<p>{{($pdf_key2  + 1).". ".$resource->title}}</p>
 												</div>
 												<div class="col-lg-4 text-end video">
 													<a class="image-popup-vertical-fit video-play btn-link" href="{{$resource->video_link}}" title="{{$resource->title}}">Preview</a>

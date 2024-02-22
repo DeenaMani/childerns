@@ -43,7 +43,7 @@
                             <tbody>
                                 @foreach ($results as $key => $data)
                                 <tr>
-                                    <td> {{$data->id}} </td>
+                                    <td> {{ $loop->index + 1 }}  </td>
                                     <td> {{$data->title}} </td>
                                     <td class="row justify-content-center"> 
                                         <a href="{{ url('admin/terms/'.$data->id.'/edit') }}" class=" btn btn-primary"><i class="fa fa-edit"></i> </a>

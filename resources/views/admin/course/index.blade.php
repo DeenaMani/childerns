@@ -47,7 +47,7 @@
                             <tbody>
                                 @foreach ($results as $data)
                                 <tr>
-                                    <td> {{ $data->id }} </td>
+                                    <td> {{ $loop->index + 1 }} </td>
                                     <td> <img src="{{ url('public/image/course/'.$data->course_image) }}" width="50px"> </td>
                                     <td> {{ $data->category_name}} </td>
                                     <td> {{$data->course_name}} </td>

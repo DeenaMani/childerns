@@ -25,21 +25,32 @@
             </div>
          </div>
          <div class="col-md-4">
+            @if(count($pdfs))
+            <div class="competitive-details-right">
+               <h4>Pdf For {{$competitive->exam_name}}</h4>
+               <ul class="list-group list-group-flush">
+              
+                @foreach($pdfs as $pdf)
+                  <li class="list-group-item"><a target="_blank" href="{{url('/public/pdf/competitite_exam/'.$pdf->pdf_name)}}">{{ $loop->index + 1 }}&nbsp; &nbsp; {{$pdf->pdf_name}}</a></li>
+                  @endforeach 
+                 
+                </ul>
+            </div>
+            @endif
+            
             <div class="competitive-details-right">
               @if(count($competitives))
-            <h4>Competitive Exam</h4>
-            <ul class="list-group list-group-flush">
+               <h4>Competitive Exam</h4>
+               <ul class="list-group list-group-flush">
               
                 @foreach($competitives as $row)
                   <li class="list-group-item"><a href="{{url('competitive/'.$row->slug)}}">{{$row->exam_name}}</a></li>
                   @endforeach
                  
-               
-                 
                 </ul>
 
-                   @endif
-               </div>
+              @endif
+            </div>
          </div>
       </div>
    </div>
